@@ -44,25 +44,26 @@ def play():
                 break
  
         # here we should reprint chessborad
-        if chess[(x, y)]=="+":
+       # most same as gomoku_board but need to change to chess so copy and edit
+        if chess[(x, y)]=='+':
             chess[(x, y)] = player
             print('     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15')
             for i in range(29):
                 if(i%2==0):
                     i = int((i+1)/2)
-                    print(chr(i + ord('A')) + "  ", end='')
+                    print(chr(i + ord('A')) + '  ', end='')
                     for j in range(53):
                         if (j%4 == 0):
                             x= i +1
                             y=int(j/4+1)
                             print(chess[(x,y)],end='')
                         else:
-                            print("-", end='')
+                            print('-', end='')
                 else:
                     print("%3s"%' ',end='')
                     for j in range(53):
                         if(j%4==0):
-                            print(" |",end='')
+                            print(' |',end='')
                         else:
                             print("  ",end='')
                 print()
@@ -71,6 +72,7 @@ def play():
     
 def win(player):
     global chess
+    #find a structure for 16x16 board and based on this to programming
     #if j<=11:
        #if board[i][j] == board[i][j+1] == board[i][j+2] == board[i][j+3] == board[i][j+4]: whowin(i,j)
     
@@ -81,7 +83,6 @@ def win(player):
                 
                 result(i,j)
                 
-             
          
     for i in range(1, 12):
         for j in range(1, 12):
@@ -90,15 +91,13 @@ def win(player):
                 
                 result(i,j)
                 
-                
     for i in range(1, 12):
         for j in range(5, 16):
             if (chess[(i, j)] == chess[(i +1, j - 1)] == chess[(i + 2, j - 2)] == chess[(i + 3, j - 3)] == chess[(i + 4, j - 4)]
                 and chess[(i, j)] in ["X", "O"]):
-                
+              
                 result(i,j)
-                
-            
+             
     for i in range(1, 16):
         for j in range(1, 12):
             if (chess[(i, j)] == chess[(i, j + 1)] == chess[(i, j + 2)] == chess[(i, j + 3)] == chess[(i, j + 4)] 
@@ -109,7 +108,7 @@ def win(player):
 
 def result(i,j):
     global chess
-    
+    # from now cannot find a best way to exit game
     if chess[(i,j)] == 'X':
         print('X win!\nGAME OVER, BYE!')
         sys.exit(0)
